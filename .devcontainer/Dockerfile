@@ -19,7 +19,7 @@ RUN apt-get update \
     xfce4-terminal thunar dbus-x11 \
     x11vnc novnc websockify supervisor \
     magic ngspice gtkwave verilator iverilog \
-    locales vim \
+    locales vim ripgrep \
  && locale-gen en_US.UTF-8 \
  && rm -rf /var/lib/apt/lists/*
 
@@ -38,6 +38,8 @@ RUN set -eux; \
     mkdir -p /opt; \
     tar -xzf /tmp/oss-cad.tgz -C /opt; \
     rm /tmp/oss-cad.tgz
+
+RUN mkdir -p /etc/sudoers.d && echo 'openfpga_user ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/openfpga_user && chmod 0440 /etc/sudoers.d/openfpga_user
 
 COPY install-openroad.sh /tmp/install-openroad.sh
 RUN chmod +x /tmp/install-openroad.sh \
