@@ -1,0 +1,6 @@
+[submodule "src/fpga"]
+	path = src/fpga
+	url = https://github.com/vsdip/vsd-fpga-scl1d.git
+[submodule "src/orfs"]
+	path = src/orfs
+	url = https://github.com/vsdip/vsd-sclc1d-orfs.git
