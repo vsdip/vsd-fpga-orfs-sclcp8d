@@ -30,3 +30,8 @@ export VIA_IN_PIN_MAX_LAYER = metal2
 export PWR_NETS_VOLTAGES = VDD 5.0
 export GND_NETS_VOLTAGES = VSS 0.0
 export USE_FILL = 0
+
+export PDN_TCL = $(PLATFORM_DIR)/pdn.tcl
+
+export DONT_USE_CELLS = TBUF00 TBUF01 TINV00 TINV01 TRAN00
+export FASTROUTE_TCL = $(PLATFORM_DIR)/fastroute.tcl
