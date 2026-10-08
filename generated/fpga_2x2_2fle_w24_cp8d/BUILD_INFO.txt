@@ -1,0 +1,8 @@
+FPGA source commit: a512d4fac54746f2636431727d556f20d505281a
+Architecture: 2x2, 2 FLE/CLB, routing width 24
+Example design: and2
+// Fabric bitstream
+// Version: 1.2.4383-dev+b0e93b1
+// Date: Thu Oct  8 16:08:17 2026
+// Bitstream length: 694
+// Bitstream width (LSB -> MSB): 1
