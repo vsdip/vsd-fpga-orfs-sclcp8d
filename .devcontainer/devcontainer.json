@@ -1,0 +1,31 @@
+{
+  "name": "VSD FPGA + ORFS CP8D",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "remoteUser": "openfpga_user",
+  "overrideCommand": false,
+  "forwardPorts": [6080],
+  "containerEnv": {
+    "DISPLAY": ":1",
+    "TMPDIR": "/tmp/orfs",
+    "OPENFPGA_PATH": "/opt/openfpga",
+    "VSD_FPGA_ROOT": "${containerWorkspaceFolder}/src/fpga",
+    "OPENROAD_EXE": "/usr/local/bin/openroad",
+    "YOSYS_EXE": "/opt/oss-cad-suite/bin/yosys",
+    "YOSYS_PLUGIN_PATH": "/opt/oss-cad-suite/share/yosys/plugins",
+    "KLAYOUT_CMD": "/usr/bin/klayout"
+  },
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "32gb"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": true
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh"
+}
