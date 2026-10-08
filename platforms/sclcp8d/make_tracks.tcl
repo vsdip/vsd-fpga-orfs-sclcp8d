@@ -1,0 +1,3 @@
+# CP8D track pitches and offsets from the supplied PDK.
+make_tracks metal1 -x_offset 0 -x_pitch 3.7 -y_offset 0 -y_pitch 3.7
+make_tracks metal2 -x_offset 1.95 -x_pitch 3.9 -y_offset 0 -y_pitch 3.9
