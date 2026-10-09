@@ -1,0 +1,8 @@
+FPGA base: a512d4fac54746f2636431727d556f20d505281a
+Width-20 patch: experiments/fpga_2x2_2fle_w20.patch
+CLB output Fc: 0.15
+AND2 bitstream length: 637 bits
+Manifest includes: 43
+CP8D wrappers: rtl/vsd_scl_primitives.v
+Six unused CLB boundary inputs and two switch boundary tracks tied low.
+CLB Fc patch: experiments/fpga_2x2_2fle_w20_fc015.patch
