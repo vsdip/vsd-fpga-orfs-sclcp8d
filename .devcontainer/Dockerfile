@@ -15,7 +15,7 @@ RUN apt-get update \
     build-essential flex bison gawk perl time bc \
     libreadline8 libtcl8.6 libtk8.6 zlib1g \
     libstdc++6 libgcc-s1 libyaml-cpp0.7 libqt5charts5 \
-    xvfb xfce4 xfce4-session xfce4-panel xfdesktop4 xfwm4 \
+    xvfb xfce4 xfce4-session xfce4-panel xfdesktop4 xfwm4 x11-xserver-utils \
     xfce4-terminal thunar dbus-x11 \
     x11vnc novnc websockify supervisor \
     magic ngspice gtkwave verilator iverilog \
@@ -54,6 +54,9 @@ RUN mkdir -p /tmp/orfs \
  && openroad -version \
  && /opt/oss-cad-suite/bin/yosys -V \
  && klayout -v
+
+COPY start-xfce.sh /usr/local/bin/start-cp8d-xfce
+RUN chmod 755 /usr/local/bin/start-cp8d-xfce
 
 COPY supervisord.conf /etc/supervisor/conf.d/vnc.conf
 
