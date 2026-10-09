@@ -1,0 +1,9 @@
+diff --git a/flow/scripts/write_ref_sdc.tcl b/flow/scripts/write_ref_sdc.tcl
+index 8dcec9b..e9b59c3 100644
+--- a/flow/scripts/write_ref_sdc.tcl
++++ b/flow/scripts/write_ref_sdc.tcl
+@@ -40 +40,3 @@ if { [llength $clks] == 0 } {
+-utl::info "FLW" 11 "Path endpoint path count [sta::endpoint_count]"
++if {[llength [info commands ::sta::endpoint_count]] != 0} {
++  utl::info "FLW" 11 "Path endpoint path count [sta::endpoint_count]"
++}
