@@ -1,0 +1,19 @@
+OpenROAD v2.0-28075-g0f99689f45 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[WARNING GUI-0076] The X11 connection broke (error 1). Did the X11 server die?
+The X11 connection broke (error 1). Did the X11 server die?
+Signal 11 received
+Stack trace:
+Signal 11 received
+Stack trace:
+ 0# 0x000059650B45E722 in openroad
+ 1# 0x00007155352EE520 in /lib/x86_64-linux-gnu/libc.so.6
+ 2# 0x000071553646DB08 in /lib/x86_64-linux-gnu/libQt5Gui.so.5
+ 3# QPainter::QPainter(QPaintDevice*) in /lib/x86_64-linux-gnu/libQt5Gui.so.5
+ 4# gui::RenderThread::draw(QImage&, QRect const&, std::set<gui::Selected, std::less<gui::Selected>, std::allocator<gui::Selected> > const&, std::array<std::set<gui::Selected, std::less<gui::Selected>, std::allocator<gui::Selected> >, 16ul> const&, std::vector<std::unique_ptr<gui::Ruler, std::default_delete<gui::Ruler> >, std::allocator<std::unique_ptr<gui::Ruler, std::default_delete<gui::Ruler> > > > const&, std::vector<std::unique_ptr<gui::Label, std::default_delete<gui::Label> >, std::allocator<std::unique_ptr<gui::Label, std::default_delete<gui::Label> > > > const&, double, QColor const&) in openroad
+ 5# gui::RenderThread::run() in openroad
+ 6# 0x0000715535EECCA1 in /lib/x86_64-linux-gnu/libQt5Core.so.5
+ 7# 0x0000715535340A83 in /lib/x86_64-linux-gnu/libc.so.6
+ 8# 0x00007155353D28E0 in /lib/x86_64-linux-gnu/libc.so.6
