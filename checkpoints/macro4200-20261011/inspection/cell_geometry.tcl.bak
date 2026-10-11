@@ -1,0 +1,104 @@
+read_db src/orfs/flow/results/sclcp8d/fpga_2fle_w20_macro4200/base/5_2_route.odb
+
+set block [[ord::get_db] getChip]
+set block [$block getBlock]
+
+# Coordinates in DBU, 1000 DBU per micron
+set region {1048000 1194000 1068000 1219000}
+
+proc overlaps {a b} {
+    lassign $a ax1 ay1 ax2 ay2
+    lassign $b bx1 by1 bx2 by2
+    return [expr {
+        $ax1 < $bx2 && $ax2 > $bx1 &&
+        $ay1 < $by2 && $ay2 > $by1
+    }]
+}
+
+proc rect_coords {rect} {
+    return [list \
+        [$rect xMin] [$rect yMin] \
+        [$rect xMax] [$rect yMax]]
+}
+
+proc placed_rect {inst box} {
+    set rect [$box getBox]
+    lassign [rect_coords $rect] x1 y1 x2 y2
+    lassign [$inst getOrigin] ox oy
+
+    switch -- [$inst getOrient] {
+        R0 {
+            return [list \
+                [expr {$ox+$x1}] [expr {$oy+$y1}] \
+                [expr {$ox+$x2}] [expr {$oy+$y2}]]
+        }
+        MX {
+            return [list \
+                [expr {$ox+$x1}] [expr {$oy-$y2}] \
+                [expr {$ox+$x2}] [expr {$oy-$y1}]]
+        }
+        default {
+            error "Unsupported orientation: [$inst getOrient]"
+        }
+    }
+}
+
+foreach name {_2351_ _2352_ _2358_} {
+    set inst [$block findInst $name]
+
+    if {$inst eq "NULL"} {
+        continue
+    }
+
+    set master [$inst getMaster]
+
+    puts "\n===== $name ====="
+    puts "MASTER: [$master getName]"
+    puts "ORIGIN: [$inst getOrigin]"
+    puts "ORIENT: [$inst getOrient]"
+
+    set bb [[$inst getBBox] getBox]
+    puts "CELL_BBOX: [rect_coords $bb]"
+
+    foreach iterm [$inst getITerms] {
+        set pname [[$iterm getMTerm] getName]
+        set net [$iterm getNet]
+        set nname UNCONNECTED
+
+        if {$net ne "NULL"} {
+            set nname [$net getName]
+        }
+
+        foreach mpin [[$iterm getMTerm] getMPins] {
+            foreach box [$mpin getGeometry] {
+                set layer [[$box getTechLayer] getName]
+
+                if {$layer ni {metal1 metal2}} {
+                    continue
+                }
+
+                set r [placed_rect $inst $box]
+
+                if {[overlaps $r $region]} {
+                    puts "PIN $pname NET $nname LAYER $layer RECT $r"
+                }
+            }
+        }
+    }
+
+    foreach box [$master getObstructions] {
+        set layer [[$box getTechLayer] getName]
+
+        if {$layer ni {metal1 metal2}} {
+            continue
+        }
+
+        set r [placed_rect $inst $box]
+
+        if {[overlaps $r $region]} {
+            puts "OBSTRUCTION LAYER $layer RECT $r"
+        }
+    }
+}
+
+puts "\nINSPECTION COMPLETE"

@@ -1,0 +1,439 @@
+
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd /workspaces/vsd-fpga-orfs-sclcp8d
+
+DB="$PWD/src/orfs/flow/results/sclcp8d/fpga_2fle_w20_macro4200/base/5_2_route.odb"
+OLD_RPT="$PWD/src/orfs/flow/reports/sclcp8d/fpga_2fle_w20_macro4200/base/5_route_drc.rpt"
+
+test -s "$DB" || {
+    echo "Missing existing routed database: $DB" >&2
+    exit 1
+}
+
+mkdir -p work
+OUT="$(mktemp -d "$PWD/work/macro4200_patch.XXXXXX")"
+
+cp -p "$DB" "$OUT/original.odb"
+
+if test -f "$OLD_RPT"; then
+    cp -p "$OLD_RPT" "$OUT/original_drc.rpt"
+fi
+
+printf 'Repair workspace: %s\n' "$OUT"
+
+cat > "$OUT/repair.tcl" <<'TCL'
+set source $::env(REPAIR_INPUT)
+set output $::env(REPAIR_OUTPUT)
+set mode $::env(REPAIR_MODE)
+set x [expr {int($::env(REPAIR_X))}]
+
+read_db $source
+
+set db [ord::get_db]
+set block [[$db getChip] getBlock]
+set tech [$db getTech]
+
+set m1 [$tech findLayer metal1]
+set m2 [$tech findLayer metal2]
+
+if {$m1 eq "NULL" || $m2 eq "NULL"} {
+    error "CP8D metal layers not found"
+}
+
+set via [$tech findVia M2_M1]
+set via_kind tech
+
+if {$via eq "NULL"} {
+    set via [$block findVia M2_M1]
+    set via_kind block
+}
+
+if {$via eq "NULL"} {
+    error "Original via M2_M1 not present"
+}
+
+if {[[ $via getBottomLayer] getName] ne "metal1" ||
+    [[ $via getTopLayer] getName] ne "metal2"} {
+    error "Unexpected via layer order"
+}
+
+proc add_m1m2_via {encoder via kind} {
+    if {$kind eq "tech"} {
+        $encoder addTechVia $via
+    } else {
+        $encoder addVia $via
+    }
+}
+
+if {$mode eq "A"} {
+    set name _0799_
+    set required {
+        {1047150 1226000}
+        {1047150 1224700}
+        {1051050 1224700}
+        {1051050 1213600}
+        {1055350 1213600}
+        {1055350 1198800}
+        {1051050 1198800}
+        {1051050 1179450}
+    }
+} else {
+    set name _0800_
+    set required {
+        {1062750 1177850}
+        {1062750 1202500}
+        {1051450 1202500}
+        {1051450 1207450}
+    }
+}
+
+set net [$block findNet $name]
+
+if {$net eq "NULL"} {
+    error "Net $name not found"
+}
+
+if {[llength [$net getITerms]] != 2} {
+    error "Unexpected number of pins on $name"
+}
+
+set old [$net getWire]
+
+if {$old eq "NULL"} {
+    error "Unrouted net $name"
+}
+
+# Decode existing wire and preserve terminal attachments
+
+set dec [odb::dbWireDecoder]
+$dec begin $old
+
+set pts {}
+set vias 0
+set tagged [dict create]
+set lastpt {}
+
+while {1} {
+    set op [$dec next]
+
+    if {$op == $odb::dbWireDecoder_END_DECODE} {
+        break
+    }
+
+    if {$op == $odb::dbWireDecoder_POINT} {
+        set lastpt [$dec getPoint]
+        lappend pts $lastpt
+
+    } elseif {$op == $odb::dbWireDecoder_POINT_EXT} {
+        set lastpt [lrange [$dec getPoint_ext] 0 1]
+        lappend pts $lastpt
+
+    } elseif {$op == $odb::dbWireDecoder_VIA ||
+              $op == $odb::dbWireDecoder_TECH_VIA} {
+        incr vias
+
+    } elseif {$op == $odb::dbWireDecoder_ITERM} {
+        if {$lastpt eq ""} {
+            error "Unlocated ITERM"
+        }
+        dict lappend tagged $lastpt \
+            [list iterm [$dec getITerm]]
+
+    } elseif {$op == $odb::dbWireDecoder_BTERM} {
+        if {$lastpt eq ""} {
+            error "Unlocated BTERM"
+        }
+        dict lappend tagged $lastpt \
+            [list bterm [$dec getBTerm]]
+    }
+}
+
+foreach p $required {
+    if {[lsearch -exact $pts $p] < 0} {
+        error "STOP: $name differs from supplied geometry: missing $p. Actual points=$pts"
+    }
+}
+
+if {$vias != 2} {
+    error "STOP: $name has $vias vias, expected 2."
+}
+
+set known_endpoints [expr {
+    $mode eq "A"
+    ? [list {1047150 1226000} {1051050 1179450}]
+    : [list {1062750 1177850} {1051450 1207450}]
+}]
+
+foreach point [dict keys $tagged] {
+    if {[lsearch -exact $known_endpoints $point] < 0} {
+        error "STOP: Terminal attachment at unexpected location $point"
+    }
+}
+
+proc tags_at {encoder tagdict p} {
+    if {[dict exists $tagdict $p]} {
+        foreach pair [dict get $tagdict $p] {
+            lassign $pair kind term
+            if {$kind eq "iterm"} {
+                $encoder addITerm $term
+            } else {
+                $encoder addBTerm $term
+            }
+        }
+    }
+}
+
+# Replace only the selected net's routed wire
+
+odb::dbWire_destroy $old
+
+set new [odb::dbWire_create $net]
+set e [odb::dbWireEncoder]
+
+$e begin $new
+
+if {$mode eq "A"} {
+
+    # Repair _0799_:
+    # Replace its central Metal2 vertical segment
+    # with a Metal1 crossover.
+
+    $e newPath $m1 ROUTED
+    $e addPoint 1047150 1226000
+
+    add_m1m2_via $e $via $via_kind
+    tags_at $e $tagged {1047150 1226000}
+
+    $e addPoint 1047150 1224700
+    $e addPoint 1051050 1224700
+    $e addPoint 1051050 1213600
+
+    if {$x != 1051050} {
+        $e addPoint $x 1213600
+    }
+
+
+    # Metal1 vertical bridge
+    $e addPoint $x 1198800
+
+
+    if {$x != 1051050} {
+        $e addPoint 1051050 1198800
+    }
+
+    $e addPoint 1051050 1179450
+
+    add_m1m2_via $e $via $via_kind
+    tags_at $e $tagged {1051050 1179450}
+
+} else {
+
+    # Alternative repair:
+    # Move _0800_'s horizontal crossover to Metal1.
+
+    $e newPath $m1 ROUTED
+    $e addPoint 1062750 1177850
+
+    add_m1m2_via $e $via $via_kind
+    tags_at $e $tagged {1062750 1177850}
+
+    $e addPoint 1062750 1202500
+
+    add_m1m2_via $e $via $via_kind
+
+    # Metal1 horizontal bridge
+    $e addPoint 1051450 1202500
+
+    add_m1m2_via $e $via $via_kind
+    $e addPoint 1051450 1207450
+
+    add_m1m2_via $e $via $via_kind
+    tags_at $e $tagged {1051450 1207450}
+}
+
+$e end
+write_def [file join $output trial.def]
+
+# Local OpenROAD detailed-routing DRC
+
+set local [file join $output local.rpt]
+
+drt::check_drc \
+    -box {1015000 1165000 1080000 1245000} \
+    -output_file $local
+
+set f [open $local r]
+set txt [read $f]
+close $f
+
+if {[regexp -nocase {violation type:} $txt]} {
+    puts "CANDIDATE_FAIL $mode $x (local DRC)"
+    puts $txt
+    exit 2
+}
+
+puts "CANDIDATE_LOCAL_CLEAN $mode $x"
+
+# Full-design OpenROAD detailed-routing DRC
+
+set full [file join $output full.rpt]
+
+drt::check_drc -output_file $full
+
+set f [open $full r]
+set txt [read $f]
+close $f
+
+if {[regexp -nocase {violation type:} $txt]} {
+    puts "CANDIDATE_FAIL $mode $x (full-chip DRC)"
+    puts [string range $txt 0 2500]
+    exit 3
+}
+
+if {![design_is_routed]} {
+    error "Design no longer reports as routed"
+}
+
+write_db [file join $output repaired.odb]
+write_def [file join $output repaired.def]
+
+puts "CANDIDATE_CLEAN $mode $x"
+exit 0
+TCL
+
+# Baseline DRC checker
+
+cat > "$OUT/baseline.tcl" <<'TCL'
+read_db $::env(REPAIR_INPUT)
+
+drt::check_drc \
+    -box {1015000 1165000 1080000 1245000} \
+    -output_file $::env(REPAIR_OUTPUT)/baseline.rpt
+
+exit 0
+TCL
+
+echo
+echo "Checking existing DRC..."
+
+if ! REPAIR_INPUT="$OUT/original.odb" \
+     REPAIR_OUTPUT="$OUT" \
+     openroad -no_init -exit "$OUT/baseline.tcl" \
+     > "$OUT/baseline.log" 2>&1; then
+
+    cat "$OUT/baseline.log"
+    echo "Baseline DRC checker failed; no changes made."
+    exit 1
+fi
+
+if ! grep -q 'violation type: Short' "$OUT/baseline.rpt" ||
+   ! grep -q 'net:_0799_' "$OUT/baseline.rpt" ||
+   ! grep -q 'net:_0800_' "$OUT/baseline.rpt"; then
+
+    echo "Expected original short was not reproduced."
+    echo "No changes made."
+    cat "$OUT/baseline.rpt"
+    exit 1
+fi
+
+cat "$OUT/baseline.rpt"
+
+# Candidate sweep
+# A = Move _0799_ vertical segment to Metal1
+# B = Move _0800_ horizontal segment to Metal1
+
+FOUND=0
+
+for candidate in A:1047150 A:1043250 A:1039350 A:1035450 A:1031550 A:1027650 A:1023750; do
+    mode="${candidate%%:*}"
+    x="${candidate#*:}"
+
+    trial="$OUT/${mode}_${x}"
+    mkdir -p "$trial"
+
+    echo
+    echo "== Testing crossover $mode at x=$x DBU =="
+
+    if REPAIR_INPUT="$OUT/original.odb" \
+       REPAIR_OUTPUT="$trial" \
+       REPAIR_MODE="$mode" \
+       REPAIR_X="$x" \
+       openroad -no_init -exit "$OUT/repair.tcl" \
+       > "$trial/run.log" 2>&1; then
+
+        if test -s "$trial/repaired.odb" &&
+           test -s "$trial/repaired.def"; then
+
+            cp "$trial/repaired.odb" "$OUT/CLEAN.odb"
+            cp "$trial/repaired.def" "$OUT/CLEAN.def"
+            cp "$trial/full.rpt" "$OUT/CLEAN_drc.rpt"
+
+            printf '%s\n' "$candidate" \
+                > "$OUT/selected_candidate.txt"
+
+            FOUND=1
+
+            echo "CLEAN CANDIDATE: $candidate"
+            break
+        fi
+    fi
+
+    grep -E 'STOP:|CANDIDATE_|ERROR|Error|error' \
+        "$trial/run.log" | tail -n 12 ||
+        tail -n 12 "$trial/run.log"
+done
+
+if (( FOUND == 1 )); then
+
+    echo
+    echo "DRC CLEAN CANDIDATE (OpenROAD check):"
+    echo "$OUT/CLEAN.odb"
+
+    echo "DEF: $OUT/CLEAN.def"
+    echo "Report: $OUT/CLEAN_drc.rpt"
+
+    if false; then # application disabled
+
+        echo
+        echo "Applying checked patch to ORFS route stage..."
+
+        cp -p "$DB" "$OUT/preinstall_backup.odb"
+        cp -p "$OUT/CLEAN.odb" "$DB"
+
+        mkdir -p "$(dirname "$OLD_RPT")"
+        cp -p "$OUT/CLEAN_drc.rpt" "$OLD_RPT"
+
+        make -C src/orfs/flow \
+            PLATFORM_HOME="$PWD/platforms" \
+            DESIGN_CONFIG="$PWD/designs/fpga_cp8d_w20/config.mk" \
+            DESIGN_NICKNAME=fpga_2fle_w20_macro4200 \
+            route 2>&1 | tee "$OUT/finish_route.log"
+
+        echo
+        echo "Applied and built the 5_route.odb checkpoint."
+        echo "Backup: $OUT/preinstall_backup.odb"
+
+    else
+
+        echo
+        echo "No original ORFS results overwritten."
+        echo
+        echo "Candidate saved for review:"
+        echo "$OUT/CLEAN.odb"
+
+        echo
+        echo "Run with --apply to install a verified candidate."
+    fi
+
+else
+
+    echo
+    echo "No tested crossover was DRC-clean."
+    echo "Existing routed database unchanged."
+    echo "Inspect candidate reports under: $OUT"
+
+    exit 2
+fi
+
