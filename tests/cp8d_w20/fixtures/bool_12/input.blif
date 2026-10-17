@@ -1,0 +1,7 @@
+.model bool_12
+.inputs a b
+.outputs y
+.names a b y
+10 1
+11 1
+.end

@@ -1,0 +1,6 @@
+IMAGE=0 FUNCTION=AND COMPLETED
+IMAGE=1 FUNCTION=XOR COMPLETED
+IMAGE=2 FUNCTION=AND COMPLETED
+FUNCTIONAL_CHECKS=768 MISMATCHES=0 SCAN_READBACK_CHECKS=1274
+CORRECTED_TEST_PASS
+/home/vsduser/workspaces/vsd-fpga-orfs-sclcp8d/work/generator_mapping_live.ERQBNzi6/corrected_sim_rtl/corrected_tb.v:161: $finish called at 95970000 (1ps)

@@ -1,0 +1,124 @@
+{
+  "comparison": "comments and include locations normalized",
+  "preexisting_frozen_ties_accounted_for": {
+    "fpga_top.v": [
+      "assigngrid_clb_1__1__undriven_top_width_0_height_0_subtile_0__pin_regin_0_=1'b0;",
+      "assigngrid_clb_1__1__undriven_top_width_0_height_0_subtile_0__pin_scin_0_=1'b0;",
+      "assigngrid_clb_1__2__undriven_top_width_0_height_0_subtile_0__pin_regin_0_=1'b0;",
+      "assigngrid_clb_1__2__undriven_top_width_0_height_0_subtile_0__pin_scin_0_=1'b0;",
+      "assigngrid_clb_2__1__undriven_top_width_0_height_0_subtile_0__pin_regin_0_=1'b0;",
+      "assigngrid_clb_2__1__undriven_top_width_0_height_0_subtile_0__pin_scin_0_=1'b0;"
+    ],
+    "routing/sb_0__1_.v": [
+      "assignchanx_right_out[0]=1'b0;",
+      "assignchanx_right_out[9]=1'b0;"
+    ]
+  },
+  "images": [
+    {
+      "case": "corrected/and2",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "corrected/xor2",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_00",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_01",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_02",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_03",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_04",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_05",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_06",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_07",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_08",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_09",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_10",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_11",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_12",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_13",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_14",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/bool_15",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/xor2",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/parity3",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/majority3",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/mux3",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/parity4",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/dual3",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/cascade",
+      "matched_verilog_files": 44
+    },
+    {
+      "case": "regression/asymmetric4",
+      "matched_verilog_files": 44
+    }
+  ],
+  "protected_files_unchanged": 51
+}

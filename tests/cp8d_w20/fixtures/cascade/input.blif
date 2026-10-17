@@ -1,0 +1,12 @@
+.model cascade
+.inputs a b c d
+.outputs y
+.names a b c t
+011 1
+101 1
+110 1
+111 1
+.names t d y
+01 1
+10 1
+.end

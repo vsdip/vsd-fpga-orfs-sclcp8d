@@ -1,0 +1,9 @@
+.model majority3
+.inputs a b c
+.outputs y
+.names a b c y
+011 1
+101 1
+110 1
+111 1
+.end

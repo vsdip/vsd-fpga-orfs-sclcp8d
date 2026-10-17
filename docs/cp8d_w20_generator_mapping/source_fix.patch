@@ -1,0 +1,65 @@
+diff --git a/openfpga/arch/vpr_arch_2x2.xml b/openfpga/arch/vpr_arch_2x2.xml
+index c300db6..2a14238 100644
+--- a/openfpga/arch/vpr_arch_2x2.xml
++++ b/openfpga/arch/vpr_arch_2x2.xml
+@@ -67,8 +67,8 @@
+         <equivalent_sites>
+           <site pb_type="clb" />
+         </equivalent_sites>
+-        <input name="I0" num_pins="4" equivalent="full" />
+-        <input name="I1" num_pins="4" equivalent="full" />
++        <input name="I0" num_pins="4" equivalent="none" />
++        <input name="I1" num_pins="4" equivalent="none" />
+ 
+ 
+         <input name="regin" num_pins="1" />
+@@ -77,7 +77,7 @@
+         <output name="regout" num_pins="1" />
+         <output name="scout" num_pins="1" />
+         <clock name="clk" num_pins="1" />
+-        <fc in_type="frac" in_val="0.15" out_type="frac" out_val="0.10">
++        <fc in_type="frac" in_val="0.15" out_type="frac" out_val="0.15">
+           <fc_override port_name="regin" fc_type="frac" fc_val="0" />
+           <fc_override port_name="regout" fc_type="frac" fc_val="0" />
+           <fc_override port_name="scin" fc_type="frac" fc_val="0" />
+@@ -271,8 +271,8 @@
+      routing area up significantly, we estimate into the ~70% range.
+      -->
+     <pb_type name="clb">
+-      <input name="I0" num_pins="4" equivalent="full" />
+-      <input name="I1" num_pins="4" equivalent="full" />
++      <input name="I0" num_pins="4" equivalent="none" />
++      <input name="I1" num_pins="4" equivalent="none" />
+ 
+ 
+       <input name="regin" num_pins="1" />
+diff --git a/openfpga/arch/vsd_openfpga_arch_scl1d.xml b/openfpga/arch/vsd_openfpga_arch_scl1d.xml
+index a6ea6b8..c801b75 100644
+--- a/openfpga/arch/vsd_openfpga_arch_scl1d.xml
++++ b/openfpga/arch/vsd_openfpga_arch_scl1d.xml
+@@ -200,9 +200,6 @@
+     <pb_type name="io[physical].iopad" circuit_model_name="vsd_scl_gpio" mode_bits="1" />
+     <pb_type name="io[inpad].inpad" physical_pb_type_name="io[physical].iopad" mode_bits="1" />
+     <pb_type name="io[outpad].outpad" physical_pb_type_name="io[physical].iopad" mode_bits="0" />
+-    <pb_type name="clb">
+-      <interconnect name="crossbar" circuit_model_name="vsd_mux_tree" />
+-    </pb_type>
+     <pb_type name="clb.fle" physical_mode_name="physical" />
+     <pb_type name="clb.fle[physical].fabric.frac_logic.frac_lut4" circuit_model_name="vsd_frac_lut4" mode_bits="0" />
+     <pb_type name="clb.fle[physical].fabric.ff" circuit_model_name="vsd_scl_user_scan_ff" />
+diff --git a/openfpga/scripts/openfpga_fab_scl1d.tcl b/openfpga/scripts/openfpga_fab_scl1d.tcl
+index 165a256..20c8efe 100644
+--- a/openfpga/scripts/openfpga_fab_scl1d.tcl
++++ b/openfpga/scripts/openfpga_fab_scl1d.tcl
+@@ -3,9 +3,9 @@
+ vpr $::env(VPR_ARCH_FILE) \
+     $::env(VPR_TESTBENCH_BLIF) \
+     --clock_modeling route \
+-    --route_chan_width 24 \
++    --route_chan_width 20 \
+     --device $::env(FABRIC_DEVICE) \
+-    --absorb_buffer_luts off \
++    --absorb_buffer_luts off --constant_net_method route \
+     --skip_sync_clustering_and_routing_results on
+ 
+ read_openfpga_arch -f $::env(OPENFPGA_ARCH_FILE)

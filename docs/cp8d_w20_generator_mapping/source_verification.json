@@ -1,0 +1,152 @@
+[
+  {
+    "name": "and2",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_00",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_01",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_02",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_03",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_04",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_05",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_06",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_07",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_08",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_09",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_10",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_11",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_12",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_13",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_14",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "bool_15",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "xor2",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "parity3",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "majority3",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "mux3",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "parity4",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "dual3",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "cascade",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  },
+  {
+    "name": "asymmetric4",
+    "configuration_bits": 637,
+    "matches_simulated_configuration": true,
+    "matches_simulated_gpio_mapping": true
+  }
+]

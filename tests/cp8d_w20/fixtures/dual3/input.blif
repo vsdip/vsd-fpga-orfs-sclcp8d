@@ -1,0 +1,14 @@
+.model dual3
+.inputs a b c
+.outputs y0 y1
+.names a b c y0
+011 1
+101 1
+110 1
+111 1
+.names a b c y1
+001 1
+010 1
+100 1
+111 1
+.end

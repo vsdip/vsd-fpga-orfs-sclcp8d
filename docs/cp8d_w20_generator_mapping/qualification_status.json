@@ -1,0 +1,38 @@
+{
+  "configuration_bits": 637,
+  "baseline_failures_reproduced": [
+    "and2",
+    "xor2"
+  ],
+  "corrected_combinational_regression": [
+    {
+      "level": "rtl",
+      "images": 24,
+      "functional_checks": 6400,
+      "scan_readback_checks": 14651,
+      "mismatches": 0
+    },
+    {
+      "level": "gate",
+      "images": 24,
+      "functional_checks": 6400,
+      "scan_readback_checks": 14651,
+      "mismatches": 0
+    }
+  ],
+  "fabric_comparison_images": 26,
+  "protected_files_unchanged": 51,
+  "sta_diagnostics": {
+    "inputs_missing_delay": 11,
+    "outputs_missing_delay": 25,
+    "unconstrained_endpoints": 26,
+    "structural_combinational_loops": 182
+  },
+  "pnr_qualified": false,
+  "limitations": [
+    "Routing clamped during serial loading, released before functional checks",
+    "Live programming without clamps remains unqualified",
+    "Registered user logic and SDF timing simulation remain unqualified",
+    "External timing budgets and configuration-aware STA require qualification"
+  ]
+}

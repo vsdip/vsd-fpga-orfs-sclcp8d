@@ -1,0 +1,9 @@
+.model mux3
+.inputs a b s
+.outputs y
+.names a b s y
+011 1
+100 1
+110 1
+111 1
+.end

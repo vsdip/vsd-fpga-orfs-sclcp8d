@@ -1,0 +1,10 @@
+IMAGE=0 a=0 b=0 y=0 expected=0
+IMAGE=0 a=0 b=1 y=0 expected=0
+IMAGE=0 a=1 b=0 y=1 expected=0
+IMAGE=0 a=1 b=1 y=1 expected=1
+IMAGE=1 a=0 b=0 y=1 expected=0
+IMAGE=1 a=0 b=1 y=1 expected=1
+IMAGE=1 a=1 b=0 y=1 expected=1
+IMAGE=1 a=1 b=1 y=1 expected=0
+BASELINE_MISMATCHES=3 SCAN_READBACK_CHECKS=637
+/home/vsduser/workspaces/vsd-fpga-orfs-sclcp8d/work/generator_mapping_live.ERQBNzi6/baseline_sim_rtl/baseline_tb.v:154: $finish called at 13580000 (1ps)

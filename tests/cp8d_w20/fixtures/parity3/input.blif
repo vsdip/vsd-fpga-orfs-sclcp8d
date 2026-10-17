@@ -1,0 +1,9 @@
+.model parity3
+.inputs a b c
+.outputs y
+.names a b c y
+001 1
+010 1
+100 1
+111 1
+.end

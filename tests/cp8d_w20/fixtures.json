@@ -1,0 +1,970 @@
+[
+  {
+    "name": "bool_00",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_01",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_02",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_03",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_04",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_05",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_06",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_07",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_08",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_09",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_10",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_11",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_12",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_13",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        1,
+        0,
+        1,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_14",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        1,
+        1,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "bool_15",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "xor2",
+    "inputs": [
+      "a",
+      "b"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[0:0]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "parity3",
+    "inputs": [
+      "a",
+      "b",
+      "c"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[1:1]",
+        "net": "c",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[3:3]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[5:5]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[4:4]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "majority3",
+    "inputs": [
+      "a",
+      "b",
+      "c"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[1:1]",
+        "net": "c",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[3:3]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[5:5]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[4:4]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "mux3",
+    "inputs": [
+      "a",
+      "b",
+      "s"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[1:1]",
+        "net": "s",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[3:3]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[5:5]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[4:4]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "parity4",
+    "inputs": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[2:2]",
+        "net": "d",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[3:3]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[5:5]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "c",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[1:1]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "dual3",
+    "inputs": [
+      "a",
+      "b",
+      "c"
+    ],
+    "outputs": [
+      "y0",
+      "y1"
+    ],
+    "truth": {
+      "y0": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "y1": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[1:1]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[2:2]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "c",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[5:5]",
+        "net": "y0",
+        "dir": "output"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[6:6]",
+        "net": "y1",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "cascade",
+    "inputs": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[2:2]",
+        "net": "c",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[4:4]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[5:5]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "d",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[1:1]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  },
+  {
+    "name": "asymmetric4",
+    "inputs": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "outputs": [
+      "y"
+    ],
+    "truth": {
+      "y": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ]
+    },
+    "io_mapping": [
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[2:2]",
+        "net": "d",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[3:3]",
+        "net": "a",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[5:5]",
+        "net": "b",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[7:7]",
+        "net": "c",
+        "dir": "input"
+      },
+      {
+        "name": "gfpga_pad_vsd_scl_gpio_Y[1:1]",
+        "net": "y",
+        "dir": "output"
+      }
+    ]
+  }
+]

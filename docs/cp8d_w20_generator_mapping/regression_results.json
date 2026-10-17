@@ -1,0 +1,16 @@
+[
+  {
+    "level": "rtl",
+    "images": 24,
+    "functional_checks": 6400,
+    "scan_readback_checks": 14651,
+    "mismatches": 0
+  },
+  {
+    "level": "gate",
+    "images": 24,
+    "functional_checks": 6400,
+    "scan_readback_checks": 14651,
+    "mismatches": 0
+  }
+]

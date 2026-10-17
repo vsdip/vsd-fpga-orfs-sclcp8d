@@ -1,0 +1,14 @@
+AUDIT_LINKED_CELLS=2561
+AUDIT_EXPECTED_CELLS=2561
+AUDIT_PORTS=38
+AUDIT_CLOCK=user_clk
+AUDIT_CLOCK=prog_clk
+AUDIT_CHECK_SETUP_BEGIN
+Warning: There are 11 input ports missing set_input_delay.
+Warning: There are 25 output ports missing set_output_delay.
+Warning: There are 26 unconstrained endpoints.
+Warning: There are 182 combinational loops in the design.
+AUDIT_CHECK_SETUP_RESULT=0
+AUDIT_CHECK_SETUP_END
+AUDIT_COMPLETE
+PNR_QUALIFIED=NO
